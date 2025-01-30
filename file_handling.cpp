@@ -19,7 +19,7 @@ std::map<std::string, Txn> Log::get_record(std::string filepath) {
     if (!fin) {
         std::cerr << "Error Opening File" << std::endl;
         throw std::runtime_error("File Open Error");
-        return;
+        return temp;
     }
 
     std::string line;

@@ -1,6 +1,10 @@
 #include "file_handling.h"
 
-bool Log::set_record(std::string filepath, Txn txn) {
+Log::Log(std::string filepath) 
+    : filepath{filepath} {}
+
+
+bool Log::set_record(Txn txn) {
     fout.open(filepath, std::ios::app);
     if (!fout) {
         std::cerr << "Error Opening File" << std::endl;
@@ -12,7 +16,7 @@ bool Log::set_record(std::string filepath, Txn txn) {
     return true;
 }
 
-std::map<std::string, Txn> Log::get_record(std::string filepath) {
+std::map<std::string, Txn> Log::get_record() {
     std::map<std::string, Txn> temp;
 
     fin.open(filepath, std::ios::in);
@@ -46,8 +50,9 @@ std::map<std::string, Txn> Log::get_record(std::string filepath) {
             temp[date] = txn;
         } else {
             std::cerr << "Error: Mal formed line: " << line << std::endl;
+            throw std::runtime_error("Line Read Error");
         }
-
-        return temp;
     }
+    fin.close();
+    return temp;
 }

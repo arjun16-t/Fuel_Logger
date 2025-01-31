@@ -10,12 +10,16 @@
 class Log {
     std::ifstream fin;
     std::ofstream fout;
+    std::string filepath;
+    
+public:
+    Log(std::string filepath);
 
-    bool set_record(std::string filepath, Txn txn);
-    std::map<std::string, Txn> get_record(std::string filepath);
+    bool set_record(Txn txn);
+    std::map<std::string, Txn> get_record();
 
     // To be implemented
-    bool search(std::string filepath, Txn txn);
+    bool search();
 };
 
 #endif

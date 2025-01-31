@@ -2,6 +2,7 @@
 #include <conio.h>
 #include "login.h"
 #include "fillups.h"
+#include "file_handling.h"
 
 void title_border(std::string title, int total_width = 70) {
     std::cout << std::endl;
@@ -35,13 +36,34 @@ bool login_info() {
     return true;
 }
 
+bool write_to_file(Txn txn) {
+    std::string filepath {"logs.csv"};
+    Log log {filepath};
+    try {
+        log.set_record(txn);
+        return true;
+    } catch (const std::runtime_error &e) {
+        std::cout << "Error Encountered: " << e.what() << std::endl;
+    }
+}
+
+void read_from_file() {
+    std::string filepath {"logs.csv"};
+    Log log {filepath};
+    try {
+        std::map<std::string, Txn> temp = log.get_record();
+        std::map<std::string, Txn>::iterator it = temp.begin();
+        while (it != temp.end()) {
+            std::cout << it->first << " " << it->second.disp_time() << " "
+            << it->second.disp_fuel() << " " << it->second.disp_reading() << std::endl;
+            it++;
+        }
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
 void fillup_details() {
-    /*
-    Determnine Date and Time using local
-    Ask for Fuel in Litres
-    OR Ask for Amount and Fuel Rate/Litre
-    Ask for Odometer Reading
-    */
     std::string title{"ADD NEW FILL UP ENTRY"};
     title_border(title);
 
@@ -76,13 +98,16 @@ void fillup_details() {
 
     system("cls");
     txn.get_stat(txn);
-    
 }
 
+
 int main() {
-    if (login_info()) {
-        system("cls");
-        fillup_details();
-    }
+    // if (login_info()) {
+    //     system("cls");
+    //     fillup_details();
+
+    // }
+
+    read_from_file();
     return 0;
 }

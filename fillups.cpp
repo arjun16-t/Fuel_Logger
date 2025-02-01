@@ -144,23 +144,23 @@ void Txn::edit_details(const Txn& txn) {
     } while (ch == 'Y' || ch == 'y');
 }
 
+std::string Txn::to_csv () {
+    std::stringstream os;
+    os << this->disp_date() << "|"
+        << this->disp_time() << "|"
+        << this->fuel << "|"
+        << this->reading << std::endl;
+    return os.str();
+}
+
 /// @brief Output stream operator for class
 /// @param os 
 /// @param txn 
 /// @return Output Stream
 std::ostream& operator<< (std::ostream &os, const Txn& txn) {
-    os << txn.disp_date() << "|"
-        << txn.disp_time() << "|"
-        << txn.fuel << "|"
-        << txn.reading << std::endl;
+    os << std::setw(17) << std::left << txn.disp_date()
+        << std::setw(17) << std::left << txn.disp_time()
+        << std::setw(17) << std::left << txn.fuel
+        << std::setw(17) << std::left << txn.reading << std::endl;
     return os;
 }
-
-// std::ostream& operator<< (std::ostream &os, const Txn& txn) {
-//     os << std::setw(17) << std::left << txn.disp_date()
-//         << std::setw(17) << std::left << txn.disp_time()
-//         << std::setw(17) << std::left << txn.fuel
-//         << std::setw(17) << std::left << txn.reading << std::endl;
-//     return os;
-// }
-

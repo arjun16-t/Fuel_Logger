@@ -36,6 +36,10 @@ bool login_info() {
     return true;
 }
 
+void menu() {
+
+}
+
 bool write_to_file(Txn txn) {
     std::string filepath {"logs.csv"};
     Log log {filepath};
@@ -56,6 +60,7 @@ void read_from_file() {
         while (it != temp.end()) {
             std::cout << it->first << " " << it->second.disp_time() << " "
             << it->second.disp_fuel() << " " << it->second.disp_reading() << std::endl;
+            std::cout << std::endl;
             it++;
         }
     } catch (const std::exception &e) {
@@ -102,11 +107,11 @@ void fillup_details() {
 
 
 int main() {
-    // if (login_info()) {
-    //     system("cls");
-    //     fillup_details();
+    if (login_info()) {
+        system("cls");
+        fillup_details();
 
-    // }
+    }
 
     read_from_file();
     return 0;

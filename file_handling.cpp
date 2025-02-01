@@ -11,7 +11,7 @@ bool Log::set_record(Txn txn) {
         throw std::runtime_error("File Open Error");
         return false;
     }
-    fout << txn;
+    fout << txn.to_csv();
     fout.close();
     return true;
 }

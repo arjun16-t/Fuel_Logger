@@ -54,7 +54,7 @@ public:
     void edit_details(const Txn& txn);
 
     // File Handling
-    
+    std::string to_csv ();
 
     // Operators/Method Overloading
     friend std::ostream& operator<< (std::ostream &os, const Txn& txn);

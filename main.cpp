@@ -22,23 +22,14 @@ void title_border(std::string title, int total_width = 70) {
 }
 
 bool login_info() {
-
     std::string title{"LOGIN PAGE"};
     title_border(title);    
     
-    Login login {"admin", "admin"};
-    std::string id, pass;
-    std::cout << "Enter User ID: ";
-    std::cin >> id;
-    std::cout << "Enter Password: ";
-    std::cin >> pass;
+    Login login {};
+    if (login.ask()) 
+        return true; 
 
-    if (!login.authentication(id, pass)) {
-        std::cout << "Invalid ID or Pass" << std::endl;
-        return false;
-    }
-    std::cout << "Login Successful";    
-    return true;
+    return false;
 }
 
 void menu() {

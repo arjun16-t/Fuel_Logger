@@ -77,7 +77,7 @@ bool Login::authentication(std::string id_s, std::string pass_s) {
 }
 
 /// @brief Asks for login id, pass
-void Login::ask() {
+bool Login::ask() {
     std::string id_user;
     std::string pass_user = "";
     char ch;
@@ -94,28 +94,30 @@ void Login::ask() {
     try {
         if (authentication(id_user, pass_user)) {
             std::cout << "Login Successful" << std::endl;
+            return true;
         }
     } catch (const char* exp) {
         std::cout << "Exception: " << exp;
     }
+    return false;
 }
 
 
-int main() {
-    Login login{};
-    login.ask();
-    std::string id_user;
-    std::string pass_user;
-    std::cout << "Enter Login Id: ";
-    std::cin >> id_user;
-    std::cout << "Enter Password: "; 
-    std::cin >> pass_user;
+// int main() {
+//     Login login{};
+//     login.ask();
+//     std::string id_user;
+//     std::string pass_user;
+//     std::cout << "Enter Login Id: ";
+//     std::cin >> id_user;
+//     std::cout << "Enter Password: "; 
+//     std::cin >> pass_user;
 
-    try {
-        if (login.new_user(id_user, pass_user)) {
-            std::cout << "User created" << std::endl;
-        }
-    } catch (const char* exp) {
-        std::cout << "Exception: " << exp;
-    }
-}
+//     try {
+//         if (login.new_user(id_user, pass_user)) {
+//             std::cout << "User created" << std::endl;
+//         }
+//     } catch (const char* exp) {
+//         std::cout << "Exception: " << exp;
+//     }
+// }

@@ -17,7 +17,7 @@ public:
     Login();
     bool authentication(std::string id, std::string pass);
     bool new_user(std::string id, std::string pass);
-    void ask();
+    bool ask();
 };
 
 #endif

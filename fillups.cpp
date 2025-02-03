@@ -95,7 +95,7 @@ long Txn::disp_reading() {
 
 /// @brief Displays summary of current reading
 /// @param txn 
-void Txn::get_stat(const Txn& txn) {
+void Txn::get_stat() {
     std::cout << std::endl;
     std::cout << std::setw(68) << std::setfill('*') << "" << std::endl;
 	std::cout << std::setfill(' ');
@@ -105,7 +105,7 @@ void Txn::get_stat(const Txn& txn) {
               << std::setw(17) << std::left << "Odometer Reading" << std::endl;
     std::cout << std::setw(68) << std::setfill('*') << "" << std::endl;
 	std::cout << std::setfill(' ');
-    std::cout << txn;
+    std::cout << *this << std::endl;
 }
 
 /// @brief To edit details (Fuel/ Reading)
@@ -136,7 +136,7 @@ void Txn::edit_details(const Txn& txn) {
             } else {
                 std::cerr << "Invalid Choice" << std::endl;
             }
-            get_stat(txn);
+            get_stat();
         } else {
             std::cerr << "Invalid Choice" << std::endl;
         }

@@ -4,6 +4,16 @@
 #include "fillups.h"
 #include "file_handling.h"
 
+/* TO-DO Things:
+    Create Menu - The First Page
+    User Login, New User Registration
+    For New Registered User - New file created using constructor
+    Add file save and fetch in fillups
+    Add edit facility for existing record (use serial no.)
+    Calculations of average mileage foreach txn
+*/
+
+
 void title_border(std::string title, int total_width = 70) {
     std::cout << std::endl;
     std::cout << std::setw(total_width) << std::setfill('=') << "" << std::endl;
@@ -12,13 +22,8 @@ void title_border(std::string title, int total_width = 70) {
 }
 
 bool login_info() {
-    /*
-    WELCOME USER
-    Ask for Login Id and Pass
-    Display Menu
-    */
 
-    std::string title{"WELCOME TO FUEL LOGGER"};
+    std::string title{"LOGIN PAGE"};
     title_border(title);    
     
     Login login {"admin", "admin"};
@@ -37,7 +42,8 @@ bool login_info() {
 }
 
 void menu() {
-
+    std::string title{"WELCOME TO FUEL LOGGER"};
+    title_border(title); 
 }
 
 bool write_to_file(Txn txn) {
@@ -102,7 +108,7 @@ void fillup_details() {
     txn.set_reading(reading);
 
     system("cls");
-    txn.get_stat(txn);
+    txn.get_stat();
 }
 
 
@@ -113,6 +119,5 @@ int main() {
 
     }
 
-    read_from_file();
     return 0;
 }

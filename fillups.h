@@ -50,7 +50,7 @@ public:
     long disp_reading();
 
     // Details Method
-    void get_stat(const Txn& txn);
+    void get_stat();
     void edit_details(const Txn& txn);
 
     // File Handling
